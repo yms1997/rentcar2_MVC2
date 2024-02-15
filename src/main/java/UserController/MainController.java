@@ -1,7 +1,7 @@
-package UserController;
-
-import frontController.Controller;
-
-public class MainController implements Controller {
-	
-}
+//package UserController;
+//
+//import frontController.Controller;
+//
+//public class MainController implements Controller {
+//	
+//}

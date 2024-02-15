@@ -31,12 +31,50 @@ public class UserDAO {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
 			System.out.println(conn);
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("연동실패");
-		} catch (ClassNotFoundException e) {
+		} 
+		catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("driver 클래스 찾지 못함 ");
 		}
+	}
+	
+	private void dbClose() {
+		  try { 
+			  if(rs!=null) rs.close();
+			  if(ps!=null) ps.close();
+			  if(conn!=null) conn.close();
+		  }
+		  catch(SQLException e) {
+			  e.printStackTrace();
+		  }
+	}
+	
+	public int checkLogin(String id , String pw) {
+		String sql = "select * from member where id=? and pw=?";
+		int num = 0;
+		try {
+			getConnect();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt("no");
+			}
+			
+			return num;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		
+		return 0;
+		
 	}
 }

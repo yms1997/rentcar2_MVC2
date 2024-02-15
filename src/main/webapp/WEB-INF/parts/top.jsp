@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Top</title>
 </head>
 <body>
-	<% 
-	 // 세션을 이용한 로그인 처리
-	 String id = (String)session.getAttribute("id");
-	 
-	 // 로그인이 되어있지 않다면
-	 if(id == null){
-		 id = "GUEST";
-	 }
-	 %>
 	<table>
 		<tr height="70">
 			<td colspan="4">
@@ -24,20 +17,14 @@
 				</a>
 			</td>
 			<td align="center" width="200">
-				<%= id %>님
-				<%
-					if(id.equals("GUEST")){
-				%>
-				<button onclick="location.href='01_carMain.jsp?center=05_memberLogin.jsp'"> 로그인 </button>
-				<%						
-					}else{
-				 %>
-				
-				
-				<button onclick="location.href='07_memberLogout.jsp'"> 로그아웃 </button> 
-				<%						
-					}
-				 %>
+				<c:if test="${ empty log }">
+					GUEST님
+					<button onclick="location.href='${ctx}/memberLogin.do'">로그인</button>
+				</c:if>
+				<c:if test="${log ne null}">
+					${id}님
+					<button onclick="location.href='${ctx}/memberLogout.do'">로그아웃</button>
+				</c:if>
 			</td>
 		</tr>
 		<tr height="50">
