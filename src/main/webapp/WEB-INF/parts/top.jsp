@@ -12,7 +12,7 @@
 	<table>
 		<tr height="70">
 			<td colspan="4">
-				<a href="01_carMain.jsp" style="text-decoration: none">
+				<a href="main.jsp" style="text-decoration: none">
 				<img alt="" src="img/rent_logo.jpg" height="120">
 				</a>
 			</td>
@@ -29,7 +29,7 @@
 		</tr>
 		<tr height="50">
 			<td align="center" width="200" bgcolor="pink">
-				<font color="white" size="5"><a href="01_carMain.jsp?center=08_carReserveMain.jsp" 
+				<font color="white" size="5"><a href="${ctx}/mainrentCarList.do"
 				style="text-decoration: none">예 약 하 기</a></font>
 			</td>
 			<td align="center" width="200" bgcolor="pink">

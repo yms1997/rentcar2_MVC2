@@ -15,9 +15,10 @@ public class LogincheckController implements Controller{
 	@Override
 	public String requestHandler(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String ctx = req.getContextPath();
+//		System.out.println("ctx = " + ctx);
 		String id = req.getParameter("id");
 		if(req.getParameter("id") == null) {
-			return "memberLogin";
+			return "user/memberLogin";
 		}
 		String pw = req.getParameter("pw");
 		int check = UserDAO.getInstance().checkLogin(id, pw);

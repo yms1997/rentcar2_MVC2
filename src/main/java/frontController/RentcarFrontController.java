@@ -19,15 +19,19 @@ public class RentcarFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8"); // 한글깨짐방지
 		
 		String url = req.getRequestURI();
+		System.out.println("url = " + url);
 		String ctx = req.getContextPath();
-		
+		System.out.println("ctx = " + ctx);
 		String command = url.substring(ctx.length());
+		System.out.println("command = " + command);
+		
 		frontController.Controller controller = null;
 		String nextPage = null;
 		HandlerMapping mapping = new HandlerMapping();
 		controller = mapping.getController(command);
 		nextPage = controller.requestHandler(req, res);
-		
+		System.out.println("controller = " + controller);
+		System.out.println("nextPage = " + nextPage);
 		
 		if(nextPage != null) {
 			if(nextPage.indexOf("redirect:") != -1) {
